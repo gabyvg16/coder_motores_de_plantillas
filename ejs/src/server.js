@@ -1,24 +1,20 @@
-// Desafío 4: API Restful
+// Desafío 5: Motores de plantillas
 const express = require('express');
 const app = express();
 const puerto = 8080;
 const routes = require('./routes/index');
+const path = require('path');
 
+// Configuración
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'));
 
-app.use('/', express.static(__dirname + '/public'));
-app.use('/api/productos', routes);
+// Configuración
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
 
-// Errores
-app.use((req, res) => {
-    res.status(404).send('Not found');
-})
-
-app.use((err, req, res) => {
-    console.log('Error', err);
-    res.status(500).send('Error');
-})
+app.use('/', routes);
 
 
 app.listen(puerto, (error) => {

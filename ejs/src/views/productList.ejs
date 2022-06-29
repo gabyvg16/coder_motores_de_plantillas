@@ -1,0 +1,11 @@
+<div class="container">
+    <% productLista.forEach( producto => { %>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="<%- producto.thumbnail %>" alt="Imagen de <%- producto.title %>">
+        <div class="card-body">
+            <h5 class="card-title"><%- producto.title %></h5>
+            <p class="card-text">Precio: $ <%- producto.price %></p>
+        </div>
+    </div>
+    <% }) %>
+</div>
